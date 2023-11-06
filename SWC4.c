@@ -101,8 +101,13 @@ void LCD_Print(void * pvParameters){
         uint16_t x2 = xTaskGetTickCount();
         uint16_t res = (x2 * portTICK_PERIOD_MS) - (x1 * portTICK_PERIOD_MS);
         //vTaskPrioritySet(LCDHandle, 2);
+				
+				while(res < 111)
+				{
+				  res = (xTaskGetTickCount() * portTICK_PERIOD_MS) - (x1 * portTICK_PERIOD_MS);
+				}
 
         /* Delay until the specified time interval has passed */
-        vTaskDelayUntil(&xLastWakeTime, 120);
+        vTaskDelayUntil(&xLastWakeTime, 200);
     }
 }

@@ -64,9 +64,14 @@ void Ultrasonic_Read(void * pvParameters){
 
         uint16_t x2 = xTaskGetTickCount();
         uint16_t res = (x2 * portTICK_PERIOD_MS) - (x1 * portTICK_PERIOD_MS);
+			 
+			  while(res < 4)
+				{
+				  res = (xTaskGetTickCount() * portTICK_PERIOD_MS) - (x1 * portTICK_PERIOD_MS);
+				}
 
         /* Delay until the specified time interval has passed */
-        vTaskDelayUntil(&xLastWakeTime, 10);
+        vTaskDelayUntil(&xLastWakeTime, 25);
 
     }
 }
@@ -114,7 +119,7 @@ void LDR_Read(void * pvParameters){
         uint16_t res = (x2 * portTICK_PERIOD_MS) - (x1 * portTICK_PERIOD_MS);
 
         /* Delay until the specified time interval has passed */
-        vTaskDelayUntil(&xLastWakeTime, 20);
+        vTaskDelayUntil(&xLastWakeTime, 50);
 
     }
 }
@@ -155,7 +160,7 @@ void TempSensor_Read(void * pvParameters){
         uint16_t res = (x2 * portTICK_PERIOD_MS) - (x1 * portTICK_PERIOD_MS);
 
         /* Delay until the specified time interval has passed */
-        vTaskDelayUntil(&xLastWakeTime, 20);
+        vTaskDelayUntil(&xLastWakeTime, 50);
 
     }
 }
